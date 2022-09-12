@@ -1,9 +1,9 @@
 pipeline {
     agent any
     stages {
-        stage('Welcome Step') {
+        stage('Echo Test') {
             steps { 
-                echo 'Welcome to LambdaTest'
+                echo 'Test from stage Echo Test'
             }
         }
         stage('Git Clone') {
