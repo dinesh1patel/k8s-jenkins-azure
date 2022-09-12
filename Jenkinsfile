@@ -24,13 +24,11 @@ pipeline {
                 sh 'docker tag din-docker-demo dinik11/din-docker-demo:din-docker-demo'
             }
         }
-        steps { 
-            withCredentials([string(credentialsId: 'DOCKER_HUB_PASSWORD', variable: 'PASSWORD')]) {
-                sh 'docker login -u dinik11 -p $PASSWORD'
-            }
-        }
         stage('Push Image to Docker Hub') {
             steps { 
+                withCredentials([string(credentialsId: 'DOCKER_HUB_PASSWORD', variable: 'PASSWORD')]) {
+                    sh 'docker login -u dinik11 -p $PASSWORD'
+                }
                 sh 'docker push  dinik11/din-docker-demo:din-docker-demo'
             }
         }
