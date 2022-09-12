@@ -2,7 +2,7 @@ version: '3'
 
 services:
   din-springboot-container:
-    image: din-spring-boot-docker-compose:1
+    image: din-spring-boot-docker-compose:2
     build:
       context: ./
       dockerfile: Dockerfile
