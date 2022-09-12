@@ -1,6 +1,11 @@
 pipeline {
     agent any
     stages {
+        stage('Echo Shell Test') {
+            steps { 
+                sh ls
+            }
+        }
         stage('Echo Test') {
             steps { 
                 echo 'Test from stage Echo Test'
