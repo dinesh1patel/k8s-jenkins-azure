@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Echo Shell Test') {
             steps { 
-                sh ls
+                sh 'ls'
             }
         }
         stage('Echo Test') {
