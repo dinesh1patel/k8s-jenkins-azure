@@ -27,7 +27,7 @@ node {
     }
     
     stage("kubernetes deployment"){
-        #sh 'az aks get-credentials --resource-group DefaultResourceGroup-SUK --name aks-test-cluster'
+        //sh 'az aks get-credentials --resource-group DefaultResourceGroup-SUK --name aks-test-cluster'
         sh 'kubectl apply -f k8s-spring-boot-deployment.yml'
     }
 } 
