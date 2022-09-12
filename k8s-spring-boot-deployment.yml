@@ -14,8 +14,8 @@ spec:
     spec:
       containers:
         - name: springboot
+          image: dinik11/din-docker-demo:latest
           imagePullPolicy: Always
-          image: dinik11/din-docker-demo:v1
           ports:
             - containerPort: 8080
           env:
