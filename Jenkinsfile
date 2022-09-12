@@ -1,3 +1,4 @@
+//scripted notation
 node {
 
     stage("Git Clone"){
