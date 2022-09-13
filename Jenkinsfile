@@ -70,10 +70,14 @@ pipeline {
 		REPO_NAME="din-docker-demo"
 		REPO_USERNAMENAME="dinik11"
                 IMAGE_NAME="$REPO_USERNAMENAME/$REPO_NAME:jenkins${BUILD_NUMBER}"
-                '''
-                withCredentials([string(credentialsId: 'DOCKER_HUB_PASSWORD', variable: 'PASSWORD')]) {
-                    sh 'docker login -u $REPO_USERNAMENAME -p $PASSWORD'
+		withCredentials([string(credentialsId: 'DOCKER_HUB_PASSWORD', variable: 'PASSWORD')]) {
+                    docker login -u $REPO_USERNAMENAME -p $PASSWORD
                 }
+                docker push  $IMAGE_NAME
+                '''
+                //withCredentials([string(credentialsId: 'DOCKER_HUB_PASSWORD', variable: 'PASSWORD')]) {
+                //    sh 'docker login -u $REPO_USERNAMENAME -p $PASSWORD'
+                //}
                 sh 'docker push  $IMAGE_NAME'
             }
         }
