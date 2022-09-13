@@ -17,8 +17,8 @@ pipeline {
         stage('Echo Test') {
             steps { 
                 echo 'Test from stage Echo Test'
-		sh echo '$REPO_NAME'
-		sh echo '\$REPO_NAME'
+		sh 'echo "$REPO_NAME"'
+		sh 'echo "\$REPO_NAME"'
             }
         }
         stage('Environment Analysis') {
