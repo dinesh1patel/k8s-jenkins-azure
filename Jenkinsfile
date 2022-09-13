@@ -66,7 +66,8 @@ pipeline {
                 //sh 'docker build -t $REPO_NAME .'
                 sh 'docker image list'
                 //sh 'docker tag $REPO_NAME $IMAGE_NAME'
-		sh 'docker build -t {imageName} .'
+		//sh 'docker build -t {imageName} .'
+		sh 'docker build -t {dockerId}/{projectName}:${BUILD_NUMBER} .'
             }
         }
         stage('Push Image to Docker Hub') {
