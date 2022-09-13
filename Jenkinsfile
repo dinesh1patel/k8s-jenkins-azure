@@ -52,11 +52,15 @@ pipeline {
 		REPO_NAME="din-docker-demo"
 		REPO_USERNAMENAME="dinik11"
                 IMAGE_NAME="$REPO_USERNAMENAME/$REPO_NAME:jenkins${BUILD_NUMBER}"
+		docker version
+		docker build -t $REPO_NAME .
+		docker image list
+		docker tag $REPO_NAME $IMAGE_NAME
                 '''
-		sh 'docker version'
-                sh 'docker build -t $REPO_NAME .'
-                sh 'docker image list'
-                sh 'docker tag $REPO_NAME $IMAGE_NAME'
+		//sh 'docker version'
+                //sh 'docker build -t $REPO_NAME .'
+                //sh 'docker image list'
+                //sh 'docker tag $REPO_NAME $IMAGE_NAME'
             }
         }
         stage('Push Image to Docker Hub') {
