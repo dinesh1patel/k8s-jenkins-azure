@@ -17,8 +17,6 @@ pipeline {
         stage('Echo Test') {
             steps { 
                 echo 'Test from stage Echo Test'
-		sh 'echo "$REPO_NAME"'
-		sh 'echo "\$REPO_NAME"'
             }
         }
         stage('Environment Analysis') {
@@ -55,36 +53,36 @@ pipeline {
         stage('Docker Build') {
             steps {
                 //Docker Repo Config
-		sh '''
-		REPO_NAME="din-docker-demo"
-		REPO_USERNAMENAME="dinik11"
-                IMAGE_NAME="$REPO_USERNAMENAME/$REPO_NAME:jenkins${BUILD_NUMBER}"
-		docker version
-		docker build -t $REPO_NAME .
-		docker image list
-		docker tag $REPO_NAME $IMAGE_NAME
-                '''
-		//sh 'docker version'
-                //sh 'docker build -t $REPO_NAME .'
-                //sh 'docker image list'
-                //sh 'docker tag $REPO_NAME $IMAGE_NAME'
+		//sh '''
+		//REPO_NAME="din-docker-demo"
+		//REPO_USERNAMENAME="dinik11"
+                //IMAGE_NAME="$REPO_USERNAMENAME/$REPO_NAME:jenkins${BUILD_NUMBER}"
+		//docker version
+		//docker build -t $REPO_NAME .
+		//docker image list
+		//docker tag $REPO_NAME $IMAGE_NAME
+                //'''
+		sh 'docker version'
+                sh 'docker build -t $REPO_NAME .'
+                sh 'docker image list'
+                sh 'docker tag $REPO_NAME $IMAGE_NAME'
             }
         }
         stage('Push Image to Docker Hub') {
             steps {
                 //Docker Repo Config
-		sh '''
-		REPO_NAME="din-docker-demo"
-		REPO_USERNAMENAME="dinik11"
-                IMAGE_NAME="$REPO_USERNAMENAME/$REPO_NAME:jenkins${BUILD_NUMBER}"
-		withCredentials([string(credentialsId: 'DOCKER_HUB_PASSWORD', variable: 'PASSWORD')]) {
-                    docker login -u $REPO_USERNAMENAME -p $PASSWORD
-                }
-                docker push  $IMAGE_NAME
-                '''
-                //withCredentials([string(credentialsId: 'DOCKER_HUB_PASSWORD', variable: 'PASSWORD')]) {
-                //    sh 'docker login -u $REPO_USERNAMENAME -p $PASSWORD'
+		//sh '''
+		//REPO_NAME="din-docker-demo"
+		//REPO_USERNAMENAME="dinik11"
+                //IMAGE_NAME="$REPO_USERNAMENAME/$REPO_NAME:jenkins${BUILD_NUMBER}"
+		//withCredentials([string(credentialsId: 'DOCKER_HUB_PASSWORD', variable: 'PASSWORD')]) {
+                //    docker login -u $REPO_USERNAMENAME -p $PASSWORD
                 //}
+                //docker push  $IMAGE_NAME
+                //'''
+                withCredentials([string(credentialsId: 'DOCKER_HUB_PASSWORD', variable: 'PASSWORD')]) {
+                    sh 'docker login -u $REPO_USERNAMENAME -p $PASSWORD'
+                }
                 sh 'docker push  $IMAGE_NAME'
             }
         }
