@@ -50,7 +50,7 @@ pipeline {
                 sh 'docker version'
                 sh 'docker build -t din-docker-demo .'
                 sh 'docker image list'
-                sh 'docker tag din-docker-demo dinik11/din-docker-demo:v3'
+                sh 'docker tag din-docker-demo dinik11/din-docker-demo:v4'
             }
         }
         stage('Push Image to Docker Hub') {
@@ -58,7 +58,7 @@ pipeline {
                 withCredentials([string(credentialsId: 'DOCKER_HUB_PASSWORD', variable: 'PASSWORD')]) {
                     sh 'docker login -u dinik11 -p $PASSWORD'
                 }
-                sh 'docker push  dinik11/din-docker-demo:v3'
+                sh 'docker push  dinik11/din-docker-demo:v4'
             }
         }
         stage('kubernetes deployment') {
