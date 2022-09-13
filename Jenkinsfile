@@ -47,9 +47,9 @@ pipeline {
         }
         stage('Docker Build') {
             steps {
-                #Docker Repo Config
-				REPO_NAME="din-docker-demo"
-				REPO_USERNAMENAME="dinik11"
+                //Docker Repo Config
+		REPO_NAME="din-docker-demo"
+		REPO_USERNAMENAME="dinik11"
                 IMAGE_NAME="$REPO_USERNAMENAME/$REPO_NAME:jenkins${BUILD_NUMBER}"
                 
                 sh 'docker version'
@@ -60,9 +60,9 @@ pipeline {
         }
         stage('Push Image to Docker Hub') {
             steps {
-                #Docker Repo Config
-				REPO_NAME="din-docker-demo"
-				REPO_USERNAMENAME="dinik11"
+                //Docker Repo Config
+		REPO_NAME="din-docker-demo"
+		REPO_USERNAMENAME="dinik11"
                 IMAGE_NAME="$REPO_USERNAMENAME/$REPO_NAME:jenkins${BUILD_NUMBER}"
                 
                 withCredentials([string(credentialsId: 'DOCKER_HUB_PASSWORD', variable: 'PASSWORD')]) {
