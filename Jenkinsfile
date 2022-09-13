@@ -14,6 +14,27 @@ pipeline {
                 echo 'Test from stage Echo Test'
             }
         }
+        stage('Environment Analysis') {
+            parallel {
+                stage('Priting All Global Variables') {
+                    steps {
+                        sh """
+                        env
+                        """
+                    }
+                }
+                stage('Execute Shell') {
+                    steps {
+                        sh 'echo "Hello"'
+                    }
+                }
+                stage('Print ENV variable') {
+                    steps {
+                        sh "echo ${APP_ENV}"
+                    }
+                }
+            }
+        }
         stage('Git Clone') {
             steps { 
                 git credentialsId: 'GIT_HUB_CREDENTIALS', url: 'https://github.com/dinesh1patel/k8s-jenkins-azure'
