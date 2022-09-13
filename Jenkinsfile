@@ -1,8 +1,8 @@
 pipeline {
      environment {
-     	REPO_NAME="din-docker-demo"
-	REPO_USERNAMENAME="dinik11"
-        IMAGE_NAME="$REPO_USERNAMENAME/$REPO_NAME:jenkins${BUILD_NUMBER}"
+     	projectName="din-docker-demo"
+	dockerId="dinik11"
+        imageName="$dockerId/$projectName:jenkins${BUILD_NUMBER}"
     }
     agent any
     options {
@@ -63,9 +63,10 @@ pipeline {
 		//docker tag $REPO_NAME $IMAGE_NAME
                 //'''
 		sh 'docker version'
-                sh 'docker build -t $REPO_NAME .'
+                //sh 'docker build -t $REPO_NAME .'
                 sh 'docker image list'
-                sh 'docker tag $REPO_NAME $IMAGE_NAME'
+                //sh 'docker tag $REPO_NAME $IMAGE_NAME'
+		sh 'docker build -t {imageName} .'
             }
         }
         stage('Push Image to Docker Hub') {
@@ -81,15 +82,16 @@ pipeline {
                 //docker push  $IMAGE_NAME
                 //'''
                 withCredentials([string(credentialsId: 'DOCKER_HUB_PASSWORD', variable: 'PASSWORD')]) {
-                    sh 'docker login -u $REPO_USERNAMENAME -p $PASSWORD'
+			sh 'docker login -u {dockerId} -p $PASSWORD'
                 }
-                sh 'docker push  $IMAGE_NAME'
+		sh 'docker push  {imageName}'
             }
         }
         stage('kubernetes deployment') {
             steps { 
                 sh 'az aks get-credentials --resource-group DefaultResourceGroup-SUK --name aks-test-cluster'
                 sh 'kubectl apply -f k8s-spring-boot-deployment.yml'
+		sh 'kubectl set image deployments/din-springboot springboot={dockerId}/{projectName}:${BUILD_NUMBER}'
             }
         }
     }
