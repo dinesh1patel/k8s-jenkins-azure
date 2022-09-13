@@ -46,19 +46,29 @@ pipeline {
             }
         }
         stage('Docker Build') {
-            steps { 
+            steps {
+                #Docker Repo Config
+				REPO_NAME="din-docker-demo"
+				REPO_USERNAMENAME="dinik11"
+                IMAGE_NAME="$REPO_USERNAMENAME/$REPO_NAME:jenkins${BUILD_NUMBER}"
+                
                 sh 'docker version'
-                sh 'docker build -t din-docker-demo .'
+                sh 'docker build -t $REPO_NAME .'
                 sh 'docker image list'
-                sh 'docker tag din-docker-demo dinik11/din-docker-demo:v4'
+                sh 'docker tag $REPO_NAME $IMAGE_NAME'
             }
         }
         stage('Push Image to Docker Hub') {
-            steps { 
+            steps {
+                #Docker Repo Config
+				REPO_NAME="din-docker-demo"
+				REPO_USERNAMENAME="dinik11"
+                IMAGE_NAME="$REPO_USERNAMENAME/$REPO_NAME:jenkins${BUILD_NUMBER}"
+                
                 withCredentials([string(credentialsId: 'DOCKER_HUB_PASSWORD', variable: 'PASSWORD')]) {
-                    sh 'docker login -u dinik11 -p $PASSWORD'
+                    sh 'docker login -u $REPO_USERNAMENAME -p $PASSWORD'
                 }
-                sh 'docker push  dinik11/din-docker-demo:v4'
+                sh 'docker push  $IMAGE_NAME'
             }
         }
         stage('kubernetes deployment') {
