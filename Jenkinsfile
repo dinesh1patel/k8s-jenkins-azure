@@ -1,4 +1,9 @@
 pipeline {
+     environment {
+     	REPO_NAME="din-docker-demo"
+	REPO_USERNAMENAME="dinik11"
+        IMAGE_NAME="$REPO_USERNAMENAME/$REPO_NAME:jenkins${BUILD_NUMBER}"
+    }
     agent any
     options {
         skipDefaultCheckout(true)
@@ -12,6 +17,8 @@ pipeline {
         stage('Echo Test') {
             steps { 
                 echo 'Test from stage Echo Test'
+		echo '$REPO_NAME'
+		echo '\$REPO_NAME'
             }
         }
         stage('Environment Analysis') {
