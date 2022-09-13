@@ -85,7 +85,7 @@ pipeline {
                 withCredentials([string(credentialsId: 'DOCKER_HUB_PASSWORD', variable: 'PASSWORD')]) {
 			sh 'docker login -u $dockerId -p $PASSWORD'
                 }
-		sh 'docker push  {imageName}'
+		sh 'docker push  ${imageName}'
             }
         }
         stage('kubernetes deployment') {
