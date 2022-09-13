@@ -67,7 +67,7 @@ pipeline {
                 sh 'docker image list'
                 //sh 'docker tag $REPO_NAME $IMAGE_NAME'
 		//sh 'docker build -t {imageName} .'
-		sh 'docker build -t {dockerId}/{projectName}:${BUILD_NUMBER} .'
+		sh 'docker build -t $imageName .'
             }
         }
         stage('Push Image to Docker Hub') {
@@ -92,7 +92,7 @@ pipeline {
             steps { 
                 sh 'az aks get-credentials --resource-group DefaultResourceGroup-SUK --name aks-test-cluster'
                 sh 'kubectl apply -f k8s-spring-boot-deployment.yml'
-		sh 'kubectl set image deployments/din-springboot springboot={dockerId}/{projectName}:${BUILD_NUMBER}'
+		sh 'kubectl set image deployments/din-springboot springboot=$imageName'
             }
         }
     }
