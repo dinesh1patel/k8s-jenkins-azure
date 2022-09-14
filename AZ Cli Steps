@@ -79,6 +79,10 @@ sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sou
 sudo apt-get update
 sudo apt-get install jenkins
 sudo service jenkins status 
+sudo systemctl start jenkins
+sudo systemctl stop jenkins
+sudo systemctl restart jenkins
+systemctl status jenkins
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 sudo vi /etc/sudoers
 //Add line jenkins ALL=(ALL) NOPASSWD: ALL at end of sudoers and save in vi (esc->:->qw!)
