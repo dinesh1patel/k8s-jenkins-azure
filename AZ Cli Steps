@@ -1,0 +1,93 @@
+
+curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash //install az cli
+
+az login --scope https://management.core.windows.net//.default
+
+az vm image list --all --output table
+
+az vm create \
+--resource-group 'DefaultResourceGroup-SUK' \
+--name 'jenkins-VM' \
+--image 'UbuntuLTS' \
+--admin-username 'azureuser' \
+--public-ip-sku Standard \
+--admin-password 'Password123!' 
+
+az vm create \
+    --resource-group DefaultResourceGroup-SUK \
+      --name jenkins-VM  \
+      --image Ubuntu  \
+      --admin-username azureuser \
+      --generate-ssh-keys
+
+az vm user update \
+ --resource-group DefaultResourceGroup-SUK \
+    --name jenkins-vm \
+    --username jenkins \
+    --ssh-key-value ~/.ssh/new_key.pub
+
+ az aks create \
+ -g DefaultResourceGroup-SUK \
+ -n aks-test-cluster \
+ --enable-managed-identity \
+ --node-count 1 \
+ --enable-addons monitoring \
+ --enable-msi-auth-for-monitoring  \
+ --generate-ssh-keys   
+
+az aks stop --name aks-test-cluster --resource-group DefaultResourceGroup-SUK
+az aks start --name aks-test-cluster --resource-group DefaultResourceGroup-SUK
+
+az vm stop --resource-group DefaultResourceGroup-SUK --name jenkins-VM
+az vm show --resource-group DefaultResourceGroup-SUK --name jenkins-VM --show-details --output table 
+
+ssh -i ~/.ssh/jenkins-vm_key jenkins@20.0.4.150
+
+sudo su - jenkins
+
+azureuser@jenkins-VM:~$ kubectl get service
+NAME               TYPE           CLUSTER-IP   EXTERNAL-IP     PORT(S)        AGE
+jhooq-springboot   LoadBalancer   10.0.46.80   20.90.230.220   80:31714/TCP   2d23h
+kubernetes         ClusterIP      10.0.0.1     <none>          443/TCP        2d23h
+
+kubectl get service -o wide
+kubectl delete svc <YourServiceName>
+
+kubectl get pod din-springboot-78c44dcfbc-t84bx -o yaml | grep imagePullPolicy -A 1
+
+ 
+def jobName = "Jenkinsfile"
+def job = Jenkins.instance.getItem(jobName)
+job.getBuilds().each { it.delete() }
+job.nextBuildNumber = 1
+job.save()
+
+//Install Helm on UbuntuLTS
+curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
+sudo apt-get install apt-transport-https --yes
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
+sudo apt-get update
+sudo apt-get install helm
+
+Java/Jenkins
+
+sudo apt-get update 
+java -version 
+sudo apt install openjdk-11-jre-headless
+wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+sudo apt-get update
+sudo apt-get install jenkins
+sudo service jenkins status 
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+sudo vi /etc/sudoers
+//Add line jenkins ALL=(ALL) NOPASSWD: ALL at end of sudoers and save in vi (esc->:->qw!)
+sudo su - jenkins  
+sudo apt install docker.io
+docker --version
+sudo usermod -aG docker jenkins
+//install kubectl
+curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+chmod +x ./kubectl 
+sudo mv ./kubectl /usr/local/bin
+kubectl version
