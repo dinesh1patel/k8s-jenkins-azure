@@ -11,7 +11,7 @@ pipeline {
         skipDefaultCheckout(true)
     }
     stages {
-        stage('Echo Shell Test') {
+        stage('Shell Output Test') {
             steps { 
                 sh 'ls'
             }
@@ -21,7 +21,7 @@ pipeline {
                 echo 'Test from stage Echo Test'
             }
         }
-        stage('Environment Analysis') {
+        stage('Parallel Tasks Step') {
             parallel {
                 stage('Priting All Global Variables') {
                     steps {
@@ -30,12 +30,12 @@ pipeline {
                         """
                     }
                 }
-                stage('Execute Shell') {
+                stage('Execute Echo Shell') {
                     steps {
                         sh 'echo "Hello"'
                     }
                 }
-                stage('Print ENV variable') {
+                stage('Print PATH variable') {
                     steps {
                         sh "echo ${PATH}"
                     }
