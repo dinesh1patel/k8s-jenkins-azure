@@ -9,6 +9,7 @@ pipeline {
     agent any
     options {
         skipDefaultCheckout(true)
+        buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')
     }
     stages {
         stage('Shell Output Test') {
