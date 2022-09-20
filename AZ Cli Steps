@@ -39,6 +39,8 @@ az aks stop --name aks-test-cluster --resource-group DefaultResourceGroup-SUK
 az aks start --name aks-test-cluster --resource-group DefaultResourceGroup-SUK
 
 az vm stop --resource-group DefaultResourceGroup-SUK --name jenkins-VM
+az vm deallocate --name jenkins-VM --resource-group DefaultResourceGroup-SUK --verbose
+az vm start --resource-group DefaultResourceGroup-SUK --name jenkins-VM
 az vm show --resource-group DefaultResourceGroup-SUK --name jenkins-VM --show-details --output table 
 
 ssh -i ~/.ssh/jenkins-vm_key jenkins@20.0.4.150
