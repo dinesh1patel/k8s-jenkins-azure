@@ -11,7 +11,7 @@ az vm create \
 --image 'UbuntuLTS' \
 --admin-username 'azureuser' \
 --public-ip-sku Standard \
---admin-password 'Password123!' 
+--admin-password 'youknow!' 
 
 az vm create \
     --resource-group DefaultResourceGroup-SUK \
@@ -71,7 +71,9 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.
 sudo apt-get update
 sudo apt-get install helm
 
+============
 Java/Jenkins
+============
 
 sudo apt-get update 
 java -version 
