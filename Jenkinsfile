@@ -85,6 +85,7 @@ pipeline {
         }
         stage('kubernetes deployment') {
             steps { 
+		echo 'Empty Step'
                 //sh 'az aks get-credentials --resource-group DefaultResourceGroup-SUK --name aks-test-cluster'
                 //sh 'kubectl apply -f k8s-spring-boot-deployment.yml'
 		//sh 'kubectl set image deployments/${deploymentName} ${containerName}=$imageName'
