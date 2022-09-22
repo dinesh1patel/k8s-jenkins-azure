@@ -16,6 +16,10 @@ public class StudentService {
         return student;
     }
 
+    public void deleteStudent(Student student) {
+        studentRepository.delete(student);
+    }
+
     public Iterable<Student> getStudents(){
         return studentRepository.findAll();
     }

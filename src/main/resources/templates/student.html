@@ -43,6 +43,7 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
+                            <th>Delete</th>
                             <th>Roll No</th>
                             <th>Name</th>
                             <th>Date of Birth</th>
@@ -50,6 +51,11 @@
                         </thead>
                         <tbody>
                         <tr th:each="student : ${students}">
+                            <td>
+                                <form action="#" th:action="@{'/student/delete/{rollNo}'(rollNo=${student.getRollNo()})}" th:method="post" >
+                                    <input class="btn btn-danger" type="submit" value="Delete"/>
+                                </form>
+                            </td>
                             <td th:text="${student.getRollNo()}">Roll No</td>
                             <td th:text="${student.getName()}">Name</td>
                             <td th:text="${student.getDateOfBirthFormatted()}">Date of Birth</td>

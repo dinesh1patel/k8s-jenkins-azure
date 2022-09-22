@@ -47,4 +47,23 @@ class StudentController {
         modelAndView.addObject("students", studentService.getStudents());
         return modelAndView;
     }
+
+    @RequestMapping(value = "student/delete/{rollNo}", method = RequestMethod.POST, consumes = MediaType.ALL_VALUE)
+    @ResponseStatus(value = HttpStatus.OK)
+    ModelAndView deleteStudent(@PathVariable Integer rollNo) throws Exception {
+
+        ModelAndView modelAndView = new ModelAndView("student");
+        try {
+            Student student = new Student();
+            student.setRollNo(rollNo);
+
+            studentService.deleteStudent(student);
+            modelAndView.addObject("message", "Student deleted with rollNo: " + student.getRollNo());
+        }
+        catch (Exception ex){
+            modelAndView.addObject("message", "Failed to delete student: " + ex.getMessage());
+        }
+        modelAndView.addObject("students", studentService.getStudents());
+        return modelAndView;
+    }
 }
