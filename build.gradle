@@ -21,12 +21,18 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
+
 	implementation 'org.springframework.boot:spring-boot-starter-jetty'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
+
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
+	compile "org.springframework.boot:spring-boot-starter-thymeleaf"
+	compile "org.springframework.boot:spring-boot-starter-data-jpa"
+	runtime "com.h2database:h2"
 }
 
 test {
