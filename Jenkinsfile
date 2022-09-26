@@ -94,7 +94,7 @@ pipeline {
     }
     post { 
     	always { 
-		echo 'Build Steps Completed'
+		echo 'Build Steps Completed '
 	}
     }
 }
