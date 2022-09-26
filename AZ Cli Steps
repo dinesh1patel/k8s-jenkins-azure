@@ -43,8 +43,8 @@ az vm deallocate --name jenkins-VM --resource-group DefaultResourceGroup-SUK --v
 az vm start --resource-group DefaultResourceGroup-SUK --name jenkins-VM
 az vm show --resource-group DefaultResourceGroup-SUK --name jenkins-VM --show-details --output table 
 
-ssh -i ~/.ssh/jenkins-vm_key jenkins@20.0.4.150
-
+ssh -i ~/.ssh/jenkins-vm_key jenkins@20.0.192.177/
+ssh -i ~/.ssh/id_rsa azureuser@20.0.192.177
 sudo su - jenkins
 
 azureuser@jenkins-VM:~$ kubectl get service
@@ -52,7 +52,7 @@ NAME               TYPE           CLUSTER-IP   EXTERNAL-IP     PORT(S)        AG
 jhooq-springboot   LoadBalancer   10.0.46.80   20.90.230.220   80:31714/TCP   2d23h
 kubernetes         ClusterIP      10.0.0.1     <none>          443/TCP        2d23h
 
-kubectl get service -o wide
+kubectl get service -o wide //to see external ip
 kubectl delete svc <YourServiceName>
 
 kubectl get pod din-springboot-78c44dcfbc-t84bx -o yaml | grep imagePullPolicy -A 1
