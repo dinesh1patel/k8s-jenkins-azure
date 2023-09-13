@@ -1,4 +1,4 @@
-package com.jhooq.Jhooqk8s.domain;
+package com.studentdb.Studentdbk8s.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

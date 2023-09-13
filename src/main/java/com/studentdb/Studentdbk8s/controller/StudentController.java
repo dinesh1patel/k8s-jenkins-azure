@@ -1,7 +1,7 @@
-package com.jhooq.Jhooqk8s.controller;
+package com.studentdb.Studentdbk8s.controller;
 
-import com.jhooq.Jhooqk8s.domain.Student;
-import com.jhooq.Jhooqk8s.service.StudentService;
+import com.studentdb.Studentdbk8s.domain.Student;
+import com.studentdb.Studentdbk8s.service.StudentService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

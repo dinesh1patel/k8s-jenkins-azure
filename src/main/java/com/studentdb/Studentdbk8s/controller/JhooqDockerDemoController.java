@@ -1,7 +1,6 @@
-package com.jhooq.Jhooqk8s.controller;
+package com.studentdb.Studentdbk8s.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
