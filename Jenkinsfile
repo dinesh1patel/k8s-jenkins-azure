@@ -44,8 +44,8 @@ pipeline {
             }
         }
         // Pipeline SCM Checkout from a GitHub Repository
-	// Syntax
-	// git branch: 'branch_name',
+	    // Syntax
+	    // git branch: 'branch_name',
         // credentialsId: 'credential_by_id stored as global variable in Jenkins',
         // url: 'git@test.com/proj/test_proj.git'
         stage('Git Clone') {
