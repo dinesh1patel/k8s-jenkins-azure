@@ -43,7 +43,11 @@ pipeline {
                 }
             }
         }
-        // Checkout the GitHub Repository
+        // Pipeline SCM Checkout from a GitHub Repository
+	// Syntax
+	// git branch: 'branch_name',
+        // credentialsId: 'credential_by_id stored as global variable in Jenkins',
+        // url: 'git@test.com/proj/test_proj.git'
         stage('Git Clone') {
             steps { 
                 git credentialsId: 'GIT_HUB_CREDENTIALS', url: 'https://github.com/dinesh1patel/k8s-jenkins-azure'
