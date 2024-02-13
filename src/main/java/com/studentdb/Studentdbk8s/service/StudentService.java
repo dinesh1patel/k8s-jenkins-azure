@@ -5,6 +5,9 @@ import com.studentdb.Studentdbk8s.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class StudentService {
 
@@ -22,5 +25,14 @@ public class StudentService {
 
     public Iterable<Student> getStudents(){
         return studentRepository.findAll();
+    }
+
+    public List<Student> getStudentsList(){
+        return (List<Student>) studentRepository.findAll();
+    }
+
+    public Optional<Student> getStudentsById(int id){
+
+        return studentRepository.findById(id);
     }
 }
