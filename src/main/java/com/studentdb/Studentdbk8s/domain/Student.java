@@ -1,9 +1,9 @@
 package com.studentdb.Studentdbk8s.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
