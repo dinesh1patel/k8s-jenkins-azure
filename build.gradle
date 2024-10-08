@@ -8,12 +8,6 @@ group = 'com.din'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
-java {
-    toolchain {
-        implementation = JvmImplementation.J9
-    }
-}
-
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
