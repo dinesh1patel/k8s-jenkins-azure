@@ -92,6 +92,7 @@ pipeline {
         }
         stage('kubernetes deployment') {
             steps { 
+		sh 'az login --scope https://management.core.windows.net//.default'
                 sh 'az aks get-credentials --resource-group DefaultResourceGroup-SUK --name aks-test-cluster'
                 sh 'kubectl apply -f k8s-spring-boot-deployment.yml'
 		sh 'kubectl set image deployments/${deploymentName} ${containerName}=$imageName'
