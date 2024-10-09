@@ -1,8 +1,8 @@
 package com.studentdb.Studentdbk8s;
 
-import com.studentdb.Studentdbk8s.domain.Student;
-import com.studentdb.Studentdbk8s.repository.StudentRepository;
-import com.studentdb.Studentdbk8s.service.StudentService;
+import com.mvc.studentdb.Studentdbk8s.domain.Student;
+import com.mvc.studentdb.Studentdbk8s.repository.StudentRepository;
+import com.mvc.studentdb.Studentdbk8s.service.StudentService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

@@ -1,7 +1,7 @@
-package com.studentdb.Studentdbk8s.service;
+package com.mvc.studentdb.Studentdbk8s.service;
 
-import com.studentdb.Studentdbk8s.domain.Student;
-import com.studentdb.Studentdbk8s.repository.StudentRepository;
+import com.mvc.studentdb.Studentdbk8s.domain.Student;
+import com.mvc.studentdb.Studentdbk8s.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

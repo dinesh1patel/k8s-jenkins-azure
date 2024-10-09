@@ -1,7 +1,7 @@
-package com.studentdb.Studentdbk8s.controller;
+package com.mvc.studentdb.Studentdbk8s.controller;
 
-import com.studentdb.Studentdbk8s.domain.Student;
-import com.studentdb.Studentdbk8s.service.StudentService;
+import com.mvc.studentdb.Studentdbk8s.domain.Student;
+import com.mvc.studentdb.Studentdbk8s.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

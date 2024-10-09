@@ -1,4 +1,4 @@
-package com.studentdb.Studentdbk8s.domain;
+package com.mvc.studentdb.Studentdbk8s.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

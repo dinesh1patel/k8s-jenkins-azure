@@ -1,6 +1,6 @@
-package com.studentdb.Studentdbk8s.repository;
+package com.mvc.studentdb.Studentdbk8s.repository;
 
-import com.studentdb.Studentdbk8s.domain.Student;
+import com.mvc.studentdb.Studentdbk8s.domain.Student;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
